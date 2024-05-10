@@ -1,0 +1,18 @@
+{
+    "name": "ndpay/ndpay",
+    "description": "全场景支付涵盖（微信、支付宝、小程序、H5、PC、APP、公众号、生活号、线下扫码、人脸识别（微信/支付宝）、扫码POS、云喇叭、扫码枪、扫码盒）等等,一套接口全部完成",
+    "autoload": {
+        "psr-4": {
+            "Ndpay\\Ndpay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "luosong",
+            "email": "775169431@qq.com"
+        }
+    ],
+    "require": {
+        "rmccue/requests": "^2.0"
+    }
+}
