@@ -3,11 +3,19 @@
 namespace Ndpay\Ndpay;
 
 class base {
-    public    $order;
-    public    $refund;
-    public    $receiver;
+    /* @var $order order:class */
+    public $order;
+    /* @var $refund refund:class */
+    public $refund;
+    /* @var $receiver receiver:class */
+    public $receiver;
+    /* @var $transfer transfer:class */
     public    $transfer;
-    protected $config  = [];
+    protected $config  = [
+        'appId' => '', // 应用ID
+        'mchNo' => '', // 商户号
+        'key'   => '', // 密钥
+    ];
     protected $head    = [
         'currency' => 'cny',
         'version'  => '1.0',
@@ -22,9 +30,6 @@ class base {
      */
     protected function request($url, array $params, $method = 'POST')
     {
-        if (!$this->appkey) {
-            throw new \Exception('密钥不能为空!');
-        }
         $headers      = ['Accept' => 'application/json'];
         $options      = [];
         $url          = $this->baseUrl . $url;

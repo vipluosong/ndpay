@@ -4,21 +4,21 @@ namespace Ndpay\Ndpay;
 
 trait order
 {
-    public function initOrder(){
+    public function __construct(){
         $this->order = new self();
     }
 
-    protected function orderUnify(array $params)
+    public function orderUnify(array $params)
     {
         return $this->request('/pay/unifiedOrder', $params);
     }
 
-    protected function queryMchOrderNo(string $mchOrderNo)
+    public function queryMchOrderNo(string $mchOrderNo)
     {
         return $this->orderQuery(['mchOrderNo' => $mchOrderNo]);
     }
 
-    protected function queryPayOrderId(string $payOrderId)
+    public function queryPayOrderId(string $payOrderId)
     {
         return $this->orderQuery(['payOrderId' => $payOrderId]);
     }
@@ -31,12 +31,12 @@ trait order
         return $this->request('/pay/query', $params);
     }
 
-    protected function closeMchOrderNo(string $mchOrderNo)
+    public function closeMchOrderNo(string $mchOrderNo)
     {
         return $this->orderClose(['mchOrderNo' => $mchOrderNo]);
     }
 
-    protected function closePayOrderId(string $payOrderId)
+    public function closePayOrderId(string $payOrderId)
     {
         return $this->orderClose(['payOrderId' => $payOrderId]);
     }
@@ -46,12 +46,12 @@ trait order
      *
      * @param string $tradeNo
      */
-    protected function orderClose(array $params)
+    public function orderClose(array $params)
     {
         return $this->request('/pay/close', $params);
     }
 
-    protected function orderNotice($data)
+    public function orderNotice($data)
     {
         $sign = $data['sign'];
         unset($data['sign']);
@@ -62,7 +62,7 @@ trait order
         return $data;
     }
 
-    protected function bridgeConfig(array $data)
+    public function bridgeConfig(array $data)
     {
         $data = isset($data['data']['payData']) ? $data['data']['payData'] : [];
         return json_decode($data,true);
