@@ -12,6 +12,7 @@
             "email": "775169431@qq.com"
         }
     ],
+    "license": "MIT",
     "require": {
         "rmccue/requests": "^2.0"
     }
