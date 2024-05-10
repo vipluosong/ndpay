@@ -56,6 +56,27 @@
 ``` php
 use Ndpay\Ndpay\ndpay;
 
-$pay = new ndpay(['appId'=>'应用ID','mchNo'=>'商户号','key'=>'密钥']);
+// 参数接口文档 https://ndpay.qyyapp.com/api/1.%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/1.html#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0
+$pay = new ndpay(['appId'=>'应用ID','mchNo'=>'商户号'],'密钥');
+
+//支付接口
 $pay->order->orderUnify([]);
+
+// 通过订单号查询
+$this->pay->order->queryMchOrderNo('订单号');
+
+// 通过订单号关闭
+$this->pay->order->closeMchOrderNo('订单号');
+
+// 通过订单号关闭
+$this->pay->order->closeMchOrderNo('订单号');
+
+// 订单退款
+$this->pay->refund->refundOrder([]);
+
+// 订单退款查询
+$this->pay->refund->queryMchRefundNo([]);
+
+// 订单转账
+$this->pay->transfer->transferOrder([]);
 ```
