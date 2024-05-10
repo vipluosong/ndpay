@@ -51,17 +51,6 @@ trait order
         return $this->request('/pay/close', $params);
     }
 
-    public function orderNotice($data)
-    {
-        $sign = $data['sign'];
-        unset($data['sign']);
-        $sign1 = $this->sign($data);
-        if ($sign1 !== $sign) {
-            throw new \Exception('签名验证未通过');
-        }
-        return $data;
-    }
-
     public function bridgeConfig(array $data)
     {
         $data = isset($data['data']['payData']) ? $data['data']['payData'] : [];
