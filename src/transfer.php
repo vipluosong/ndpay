@@ -10,18 +10,18 @@ class transfer
         $this->base = $base;
     }
 
-    protected function transferOrder(array $params)
+    public function transferOrder(array $params)
     {
         $params['currency'] = 'cny';
         return $this->base->request('/transferOrder', $params);
     }
 
-    protected function queryNchOrderNo(string $mchOrderNo)
+    public function queryNchOrderNo(string $mchOrderNo)
     {
         return $this->transferQuery(['mchOrderNo' => $mchOrderNo]);
     }
 
-    protected function queryTransferId(string $transferId)
+    public function queryTransferId(string $transferId)
     {
         return $this->transferQuery(['transferId' => $transferId]);
     }
@@ -37,7 +37,7 @@ class transfer
     /**
      * @param array $params
      */
-    protected function queryBalance(array $params)
+    public function queryBalance(array $params)
     {
         return $this->base->request('/transfer/balance/query', $params);
     }

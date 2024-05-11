@@ -10,18 +10,18 @@ class refund
         $this->base = $base;
     }
 
-    protected function refundOrder(array $params)
+    public function refundOrder(array $params)
     {
         $params['currency'] = 'cny';
         return $this->base->request('/refund/refundOrder', $params);
     }
 
-    protected function queryMchRefundNo(string $mchRefundNo,$data)
+    public function queryMchRefundNo(string $mchRefundNo,$data)
     {
         return $this->refundQuery(array_merge(['mchRefundNo' => $mchRefundNo],$data));
     }
 
-    protected function queryRefundOrderId(string $refundOrderId,$data)
+    public function queryRefundOrderId(string $refundOrderId,$data)
     {
         return $this->refundQuery(array_merge(['refundOrderId' => $refundOrderId],$data));
     }
