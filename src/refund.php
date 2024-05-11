@@ -2,18 +2,18 @@
 
 namespace Ndpay\Ndpay;
 
-trait refund
+class refund
 {
-    public $refund;
-    public function __construct()
-    {
-        $this->refund = new self();
+    protected $base;
+
+    public function __construct(base $base) {
+        $this->base = $base;
     }
 
     protected function refundOrder(array $params)
     {
         $params['currency'] = 'cny';
-        return $this->request('/refund/refundOrder', $params);
+        return $this->base->request('/refund/refundOrder', $params);
     }
 
     protected function queryMchRefundNo(string $mchRefundNo,$data)
@@ -31,6 +31,6 @@ trait refund
      */
     private function refundQuery(array $params)
     {
-        return $this->request('/refund/query', $params);
+        return $this->base->request('/refund/query', $params);
     }
 }

@@ -2,18 +2,18 @@
 
 namespace Ndpay\Ndpay;
 
-trait transfer
+class transfer
 {
-    public    $transfer;
-    public function __construct()
-    {
-        $this->transfer = new self();
+    protected $base;
+
+    public function __construct(base $base) {
+        $this->base = $base;
     }
 
     protected function transferOrder(array $params)
     {
         $params['currency'] = 'cny';
-        return $this->request('/transferOrder', $params);
+        return $this->base->request('/transferOrder', $params);
     }
 
     protected function queryNchOrderNo(string $mchOrderNo)
@@ -31,7 +31,7 @@ trait transfer
      */
     private function transferQuery(array $params)
     {
-        return $this->request('/transfer/query', $params);
+        return $this->base->request('/transfer/query', $params);
     }
 
     /**
@@ -39,6 +39,6 @@ trait transfer
      */
     protected function queryBalance(array $params)
     {
-        return $this->request('/transfer/balance/query', $params);
+        return $this->base->request('/transfer/balance/query', $params);
     }
 }

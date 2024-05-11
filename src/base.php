@@ -30,7 +30,7 @@ class base {
     /**
      * @throws \Exception
      */
-    protected function request($url, array $params, $method = 'POST')
+    public function request($url, array $params, $method = 'POST')
     {
         $headers      = ['Accept' => 'application/json'];
         $options      = [];

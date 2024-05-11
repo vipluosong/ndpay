@@ -2,18 +2,18 @@
 
 namespace Ndpay\Ndpay;
 
-trait order
+class order
 {
-    public $order;
+    protected $base;
 
-    public function __construct(){
-        $this->order = new self();
+    public function __construct(base $base) {
+        $this->base = $base;
     }
 
     public function orderUnify(array $params)
     {
         $params['currency'] = 'cny';
-        return $this->request('/pay/unifiedOrder', $params);
+        return $this->base->request('/pay/unifiedOrder', $params);
     }
 
     public function queryMchOrderNo(string $mchOrderNo)
@@ -31,7 +31,7 @@ trait order
      */
     private function orderQuery(array $params)
     {
-        return $this->request('/pay/query', $params);
+        return $this->base->request('/pay/query', $params);
     }
 
     public function closeMchOrderNo(string $mchOrderNo)
@@ -51,7 +51,7 @@ trait order
      */
     public function orderClose(array $params)
     {
-        return $this->request('/pay/close', $params);
+        return $this->base->request('/pay/close', $params);
     }
 
     public function bridgeConfig(array $data)

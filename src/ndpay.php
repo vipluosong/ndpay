@@ -3,14 +3,16 @@ namespace Ndpay\Ndpay;
 
 class ndpay  extends base
 {
-    use order;
-    use refund;
-    use transfer;
-    use receiver;
+    public $order;
+    public $refund;
+    public $transfer;
+    public $receiver;
 
-    public function __construct($config, $key)
-    {
-        $this->appkey = $key;
-        $this->config = $config;
+    public function __construct($config, $key) {
+        parent::__construct($config, $key);
+        $this->order = new order($this);
+        $this->refund = new refund($this);
+        $this->transfer = new transfer($this);
+        $this->receiver = new receiver($this);
     }
 }
