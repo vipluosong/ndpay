@@ -14,7 +14,6 @@ class base {
     protected $config  = [
         'appId' => '', // 应用ID
         'mchNo' => '', // 商户号
-        'key'   => '', // 密钥
     ];
     protected $head    = [
         'version'  => '1.0',
@@ -22,7 +21,7 @@ class base {
         'reqTime'  => '',
         'sign'     => '',
     ];
-    protected $appkey;
+    protected $appkey; // 密钥
     private   $baseUrl = 'https://pay.jeepay.vip/api';
 
     public function signCheck($data)
