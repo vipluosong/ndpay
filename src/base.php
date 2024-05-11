@@ -17,7 +17,6 @@ class base {
         'key'   => '', // 密钥
     ];
     protected $head    = [
-        'currency' => 'cny',
         'version'  => '1.0',
         'signType' => 'MD5',
         'reqTime'  => '',

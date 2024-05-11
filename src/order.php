@@ -10,6 +10,7 @@ trait order
 
     public function orderUnify(array $params)
     {
+        $params['currency'] = 'cny';
         return $this->request('/pay/unifiedOrder', $params);
     }
 

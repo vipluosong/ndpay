@@ -11,6 +11,7 @@ trait refund
 
     protected function refundOrder(array $params)
     {
+        $params['currency'] = 'cny';
         return $this->request('/refund/refundOrder', $params);
     }
 

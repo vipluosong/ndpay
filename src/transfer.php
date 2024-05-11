@@ -11,6 +11,7 @@ trait transfer
 
     protected function transferOrder(array $params)
     {
+        $params['currency'] = 'cny';
         return $this->request('/transferOrder', $params);
     }
 
