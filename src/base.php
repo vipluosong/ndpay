@@ -16,6 +16,11 @@ class base {
     protected $appkey; // 密钥
     private   $baseUrl = 'https://pay.jeepay.vip/api';
 
+    public function __construct($config, $key) {
+        $this->appkey = $key;
+        $this->config = $config;
+    }
+
     public function signCheck($data)
     {
         $sign = $data['sign'];
