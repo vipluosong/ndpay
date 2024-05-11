@@ -35,16 +35,15 @@ class base {
     /**
      * @throws \Exception
      */
-    public function request($url, array $params, $method = 'POST')
+    public function request($url, array $params)
     {
-        $headers      = ['Accept' => 'application/json'];
         $options      = [];
         $url          = $this->baseUrl . $url;
         $this->head['reqTime'] = (string)time();
         $data         = array_merge($this->config, $this->head, $params);
         $data['sign'] = $this->sign($data);
-        $request      = \Requests::request($url, $headers, $data, $method, $options);
-        $res          = json_decode($request->body, true);
+        $result = $this->curl($url,$data);
+        $res          = json_decode($result, true);
         $code         = $res['code'];
         $errCode      = $res['data']['errCode'];
         if ($code || $errCode) {
@@ -52,6 +51,24 @@ class base {
             throw new \Exception($msg);
         }
         return $res;
+    }
+
+    private function curl($url,$data) {
+        $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json', 'Content-Length:' . strlen($data)));
+        $result = curl_exec($curl);
+        if(curl_errno($curl)) {
+            throw new \Exception('Errno'.curl_errno($curl));
+        }
+        curl_close($curl);
+        return $result;
     }
 
     protected function sign($paramArray)

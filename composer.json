@@ -13,8 +13,5 @@
         }
     ],
     "license": "MIT",
-    "require": {
-        "rmccue/requests": "^2.0"
-    },
     "minimum-stability": "dev"
 }
