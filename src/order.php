@@ -4,6 +4,8 @@ namespace Ndpay\Ndpay;
 
 trait order
 {
+    public $order;
+
     public function __construct(){
         $this->order = new self();
     }

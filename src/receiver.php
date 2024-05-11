@@ -4,6 +4,7 @@ namespace Ndpay\Ndpay;
 
 trait receiver
 {
+    public $receiver;
     public function __construct(){
         $this->receiver = new self();
     }

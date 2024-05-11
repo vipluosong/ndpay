@@ -3,14 +3,6 @@
 namespace Ndpay\Ndpay;
 
 class base {
-    /* @var $order order:class */
-    public $order;
-    /* @var $refund refund:class */
-    public $refund;
-    /* @var $receiver receiver:class */
-    public $receiver;
-    /* @var $transfer transfer:class */
-    public    $transfer;
     protected $config  = [
         'appId' => '', // 应用ID
         'mchNo' => '', // 商户号

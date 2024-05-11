@@ -4,6 +4,7 @@ namespace Ndpay\Ndpay;
 
 trait transfer
 {
+    public    $transfer;
     public function __construct()
     {
         $this->transfer = new self();

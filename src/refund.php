@@ -4,6 +4,7 @@ namespace Ndpay\Ndpay;
 
 trait refund
 {
+    public $refund;
     public function __construct()
     {
         $this->refund = new self();
