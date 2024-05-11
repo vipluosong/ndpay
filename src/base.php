@@ -20,9 +20,21 @@ class base {
         'version'  => '1.0',
         'signType' => 'MD5',
         'reqTime'  => '',
+        'sign'     => '',
     ];
     protected $appkey;
     private   $baseUrl = 'https://pay.jeepay.vip/api';
+
+    public function signCheck($data)
+    {
+        $sign = $data['sign'];
+        unset($data['sign']);
+        $sign1 = $this->sign($data);
+        if ($sign1 !== $sign) {
+            throw new \Exception('签名验证未通过');
+        }
+        return $data;
+    }
 
     /**
      * @throws \Exception
@@ -32,7 +44,8 @@ class base {
         $headers      = ['Accept' => 'application/json'];
         $options      = [];
         $url          = $this->baseUrl . $url;
-        $data         = array_merge($this->config, $this->head, $params, ['reqTime' => (string)time()]);
+        $this->head['reqTime'] = (string)time();
+        $data         = array_merge($this->config, $this->head, $params);
         $data['sign'] = $this->sign($data);
         $request      = \Requests::request($url, $headers, $data, $method, $options);
         $res          = json_decode($request->body, true);
@@ -57,16 +70,5 @@ class base {
         }
         $sign = strtoupper(md5($md5str . "key=" . $this->appkey));  //签名
         return $sign;
-    }
-
-    public function signCheck($data)
-    {
-        $sign = $data['sign'];
-        unset($data['sign']);
-        $sign1 = $this->sign($data);
-        if ($sign1 !== $sign) {
-            throw new \Exception('签名验证未通过');
-        }
-        return $data;
     }
 }
