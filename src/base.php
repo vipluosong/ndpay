@@ -45,9 +45,8 @@ class base {
         $result = $this->curl($url,$data);
         $res          = json_decode($result, true);
         $code         = $res['code'];
-        $errCode      = $res['data']['errCode'];
-        if ($code || $errCode) {
-            $msg = $res['data']['errMsg'] ?: $res['msg'];
+        if ($code || isset($res['data']['errCode'])) {
+            $msg = isset($res['data']['errMsg']) ? $res['data']['errMsg'] : $res['msg'];
             throw new \Exception($msg);
         }
         return $res;
